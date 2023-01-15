@@ -66,7 +66,6 @@ function toReadable (number) {
             if (!(etrStr.startsWith('1')) && etrStr.endsWith('0')){
                 for (let el in tensObj) {
                     if (el == etrStr) {
-                        // console.log(`i came here ${tensObj[el]}`); //todo delit this! Test
                         return tensObj[el];
                     }
                 }
@@ -87,11 +86,44 @@ function toReadable (number) {
             return readableNum;
         }
     }
-    return singleUnitConvertToReadable(etrStr) ?? tensConvertToReadable(etrStr);
+
+    const hundredConvertToReadable = (etrStr) => {
+        if (etrStr.length == 3) {
+            if (etrStr.endsWith('00')){
+                for (let el in unitsObj) {
+                    if (el == etrStr.at(0)) {
+                        // console.log(`i came here ${tensObj[el]}`); //todo delit this! Test
+                        return `${unitsObj[el]} hundred`;
+                    }
+                }
+            }
+
+            for (let el in unitsObj) {
+                if (el == etrStr.at(0)) {
+                    readableNum += `${unitsObj[el]} hundred` + ' ';
+                }
+            }
+
+            for (let el in tensObj) {
+                if (el.at(0) == etrStr.at(1)) {
+                    readableNum += tensObj[el] + ' ';
+                }
+            }
+            
+            for (let el in unitsObj) {
+                if (el == etrStr.at(2)) {
+                    readableNum += unitsObj[el];
+                }
+            }
+            
+            return readableNum;
+        }
+    }
+    return singleUnitConvertToReadable(etrStr) ?? tensConvertToReadable(etrStr) ?? hundredConvertToReadable(etrStr);
 
 }
 
-console.log(toReadable(26));
+console.log(toReadable(999));
 /* let numObj = {'22' : 'twelve'};
 for (let el in numObj) {
     if (el.at(0) == '1')
