@@ -4,8 +4,8 @@ module.exports = function toReadable (number) {
     let readableNum = '';
 
     const unitsObj = {
-        '0' : 'zero', 
-        '1' : 'one', 
+        '0' : 'zero',
+        '1' : 'one',
         '2' : 'two',
         '3' : 'three',
         '4' : 'four',
@@ -38,7 +38,7 @@ module.exports = function toReadable (number) {
         '80' : 'eighty',
         '90' : 'ninety'
     }
-    
+
     const singleUnitConvertToReadable = (etrStr) => {
         if (etrStr.length == 1) {
             for (let el in unitsObj) {
@@ -48,7 +48,7 @@ module.exports = function toReadable (number) {
             }
         }
     }
-    
+
     const tensConvertToReadable = (etrStr) => {
         if (etrStr.length == 2) {
             if (etrStr.startsWith('1')) {
@@ -78,7 +78,7 @@ module.exports = function toReadable (number) {
                     readableNum += unitsObj[el];
                 }
             }
-            
+
             return readableNum;
         }
     }
@@ -93,13 +93,13 @@ module.exports = function toReadable (number) {
                 }
             }
 
-            
+
             for (let el in unitsObj) {
                 if (el == etrStr.at(0)) {
                     readableNum += `${unitsObj[el]} hundred` + ' ';
                 }
             }
-            
+
             if (etrStr.at(1).startsWith('1')){
                 for (let el in firstTensObj) {
                     if (el.at(0) == etrStr.at(1) && el.at(1) == etrStr.at(2)) {
@@ -113,7 +113,7 @@ module.exports = function toReadable (number) {
                     readableNum += tensObj[el] + ' ';
                 }
             }
-            
+
             if (etrStr.endsWith('0')) {
                 return (`${readableNum}`).trim();
             }
@@ -123,7 +123,7 @@ module.exports = function toReadable (number) {
                     readableNum += unitsObj[el];
                 }
             }
-            
+
             return readableNum;
         }
     }
