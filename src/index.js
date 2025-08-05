@@ -2,6 +2,28 @@ const singleUnitConvertToReadable = require('./singleUnitConvertToReadable');
 const tensConvertToReadable = require('./tensConvertToReadable');
 const hundredConvertToReadable = require('./hundredConvertToReadable');
 
+/**
+ * Get the word representation of the @link{number}
+ *
+ * @note ! Impure function! !
+ *  - implicit dependency on @callback{singleUnitConvertToReadable}
+ *  - implicit dependency on @callback{tensConvertToReadable}
+ *  - implicit dependency on @callback{hundredConvertToReadable}
+ *  That's is copy them too (and "src\utils\getElemFromVocabulary.js" too) for usage
+ *
+ * @param {number} number - non - negative finite integer
+ *
+ * @returns {string} - string represenation of the given @link{number}
+ *
+ * @example
+ *    toReadable(0) => "zero"
+ *    toReadable(9) => "nine"
+ *    toReadable(17) => "seventeen"
+ *    toReadable(42) => "forty two"
+ *    toReadable(109) => "one hundred nine"
+ *    toReadable(999) => "nine hundred ninety nine"
+ *
+ */
 module.exports = function toReadable(number) {
   const etrStr = String(number);
 
